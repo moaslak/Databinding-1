@@ -20,9 +20,37 @@ namespace TwoWayTest
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Person> Personer = new List<Person>();
+
+        Person person = new Person(0, "Svend", "Bendt", 123);
         public MainWindow()
         {
             InitializeComponent();
+
+            Personer.Add(person);
+            Personer.Add(new Person(1, "Bein", "Stagge", -987654321));
+            Personer.Add(new Person(2, "Turt", "Khorsen", 0));
+            Personer.Add(new Person(3, "Gill", "Bates", int.MaxValue));
+
+            this.DataContext = Personer;
+        }
+
+        private void VisDataBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string PersonData = person.Fornavn +
+                " " +
+                person.Efternavn +
+                " har en formue på " +
+                person.Formue +
+                " Kr.";
+
+            MessageBox.Show(PersonData);
+
+        }
+
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            person.Formue++;
         }
     }
 }
